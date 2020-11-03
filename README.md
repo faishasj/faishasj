@@ -7,7 +7,7 @@
 
 Hello, world! I'm Faisha. I work with researchers and academics prototyping valuable X-reality applications at Monash University, whilst studying there as a third-year CS undergrad. My interests include human-computer interaction, algorithm design and computational science.
 
-But alas, this is where I make silly programs for fun. Hackathons, web apps, esoteric programming languages, my blog... and other questionable side projects. Welcome to my code swamp.
+Welcome to my code swamp.
 
 [![Blog](https://img.shields.io/badge/%F0%9F%92%BB%20Blog-Read%20me!-white?style=social&link=https://faisha.dev/)](https://faisha.dev/)
 [![Twitter](https://img.shields.io/badge/Twitter--white?style=social&logo=twitter&link=https://twitter.com/faishasj)](https://twitter.com/faishasj)
