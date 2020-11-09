@@ -3,7 +3,7 @@
 ![Build: short](https://img.shields.io/badge/build-short-brightgreen) 
 ![Issues: too many](https://img.shields.io/badge/issues-too%20many-red) 
 ![Vulnerabilities: CSS](https://img.shields.io/badge/vulnerabilities-CSS-yellow) 
-![Code quality: yes?](https://img.shields.io/badge/code%20quality-yes%3F-brightgreen)
+![Code quality: yes?](https://img.shields.io/badge/code%20quality-yes-brightgreen)
 
 Hello, world! I'm Faisha. I work with researchers and academics prototyping valuable X-reality applications at Monash University, whilst studying there as a third-year CS undergrad. My interests include human-computer interaction, algorithm design and computational science.
 
