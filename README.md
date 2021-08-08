@@ -5,11 +5,14 @@
 ![Vulnerabilities: CSS](https://img.shields.io/badge/vulnerabilities-CSS-yellow) 
 ![Code quality: yes?](https://img.shields.io/badge/code%20quality-yes-brightgreen)
 
-Hello, world! I'm Faisha. I work with researchers and academics prototyping valuable X-reality applications at Monash University, whilst studying there as a third-year CS undergrad. My interests include human-computer interaction, algorithm design and computational science.
+Hello, world! I'm Faisha. I work with researchers and academics prototyping valuable X-reality applications at Monash University, whilst studying there as a CS Honours student. My interests include human-computer interaction, algorithm design and computational science.
 
 Welcome to my code swamp.
 
-[![Blog](https://img.shields.io/badge/%F0%9F%92%BB%20Blog-Read%20me!-white?style=social&link=https://faisha.dev/)](https://faisha.dev/)
+[string_me along](https://faisha.dev/): My blog about computer science, maths and the in-between.
+
+[Context-Free Verse](https://faisha.dev/): Code poems that are occasionally free verse and always free from context.
+
 [![Twitter](https://img.shields.io/badge/Twitter--white?style=social&logo=twitter&link=https://twitter.com/faishasj)](https://twitter.com/faishasj)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn--white?style=social&logo=linkedin&link=https://www.linkedin.com/in/faisha-surjatin/)](https://www.linkedin.com/in/faisha-surjatin/)
 [![Email](https://img.shields.io/badge/Email--white?style=social&logo=gmail&link=mailto:faisha@faisha.dev)](mailto:faisha@faisha.dev)
