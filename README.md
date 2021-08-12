@@ -9,9 +9,9 @@ Hello, world! I'm Faisha. I work with researchers and academics prototyping valu
 
 Welcome to my code swamp.
 
-[string_me along](https://faisha.dev/): My blog about computer science, maths and the in-between.
+[👩‍💻 string_me along](https://faisha.dev/): My blog about computer science, maths and the in-between.
 
-[Context-Free Verse](https://contextfreeverse.com/): Code poems that are occasionally free verse and always free from context.
+[🥀 Context-Free Verse](https://contextfreeverse.com/): Code poems that are occasionally free verse and always free from context.
 
 [![Twitter](https://img.shields.io/badge/Twitter--white?style=social&logo=twitter&link=https://twitter.com/faishasj)](https://twitter.com/faishasj)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn--white?style=social&logo=linkedin&link=https://www.linkedin.com/in/faisha-surjatin/)](https://www.linkedin.com/in/faisha-surjatin/)
