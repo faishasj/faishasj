@@ -5,7 +5,7 @@
 ![Vulnerabilities: CSS](https://img.shields.io/badge/vulnerabilities-CSS-yellow) 
 ![Code quality: yes?](https://img.shields.io/badge/code%20quality-yes-brightgreen)
 
-Hello, world! I'm Faisha, a software developer in the Virtual/Augmented Reality Services (VARS) Unit at Monash University.
+Hello, world! I'm Faisha.
 
 Welcome to my code swamp.
 
