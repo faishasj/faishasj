@@ -6,12 +6,14 @@
 # 4: seed level 3
 # 5: seed level 4
 # 6: outline (seed region border)
+# 7: caption text
 
 IDX_BACKGROUND = 0
 IDX_DEAD = 1
 IDX_SEED_BASE = 1   # contribution level k → IDX_SEED_BASE + k  (0→1, 1→2, …, 4→5)
 IDX_SEED_MAX = IDX_SEED_BASE + 4  # fallback for cells with no contribution-coloured neighbour
 IDX_OUTLINE = 6
+IDX_CAPTION_TEXT = 7
 
 # fmt: off
 LIGHT_COLORS = [
@@ -21,7 +23,8 @@ LIGHT_COLORS = [
     ( 64, 196,  99),  # 3  seed level 2          #40c463
     ( 48, 161,  78),  # 4  seed level 3          #30a14e
     ( 33, 110,  57),  # 5  seed level 4          #216e39
-    ( 87,  96, 106),  # 6  outline               #57606a
+    (209, 217, 224),  # 6  outline               #d1d9e0
+    ( 33,  37,  41),  # 7  caption text          #212529
 ]
 
 DARK_COLORS = [
@@ -31,7 +34,8 @@ DARK_COLORS = [
     (  0, 109,  50),  # 3  seed level 2          #006d32
     ( 38, 166,  65),  # 4  seed level 3          #26a641
     ( 57, 211,  83),  # 5  seed level 4          #39d353
-    (139, 148, 158),  # 6  outline               #8b949e
+    ( 61,  68,  77),  # 6  outline               #3d444d
+    (240, 246, 252),  # 7  caption text          #f0f6fc
 ]
 # fmt: on
 

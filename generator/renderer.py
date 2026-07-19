@@ -2,10 +2,11 @@ from __future__ import annotations
 
 from typing import List, Tuple
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 from .palettes import (
     IDX_BACKGROUND,
+    IDX_CAPTION_TEXT,
     IDX_DEAD,
     IDX_OUTLINE,
     IDX_SEED_BASE,
@@ -36,13 +37,17 @@ def render_gif(
     """
     cell_size: int = config["cell_size"]
     gap: int = config["gap"]
+    caption_height: int = config["caption_height"]
+    caption_text: str = config["caption_text"]
     pitch: int = cell_size + gap
     world_rows: int = len(frames[0])
     world_cols: int = len(frames[0][0])
+    grid_h: int = world_rows * pitch
     img_w: int = world_cols * pitch
-    img_h: int = world_rows * pitch
+    img_h: int = grid_h + caption_height
 
     pal_flat = flat_palette(colors)
+    font = ImageFont.load_default()
 
     images: list = []
     durations: list = []
@@ -56,9 +61,14 @@ def render_gif(
             seed_offset,
             pal_flat,
             cell_size,
+            gap,
             pitch,
             img_w,
+            grid_h,
             img_h,
+            caption_height,
+            caption_text,
+            font,
         )
         images.append(img)
 
@@ -91,9 +101,14 @@ def _render_frame(
     seed_offset: Tuple[int, int],
     pal_flat: list,
     cell_size: int,
+    gap: int,
     pitch: int,
     img_w: int,
+    grid_h: int,
     img_h: int,
+    caption_height: int,
+    caption_text: str,
+    font: ImageFont.ImageFont,
 ) -> Image.Image:
     img = Image.new("P", (img_w, img_h), IDX_BACKGROUND)
     img.putpalette(pal_flat)
@@ -142,14 +157,33 @@ def _render_frame(
             else:
                 color_idx = IDX_DEAD
 
-            draw.rounded_rectangle(cell_rect, radius=corner_radius, fill=color_idx)
+            draw.rounded_rectangle(
+                cell_rect,
+                radius=corner_radius,
+                fill=color_idx,
+            )
 
-    # Persistent outline around the seed region — sits in the 1-px gap.
-    ox0 = offset_c * pitch - 1
-    oy0 = offset_r * pitch - 1
-    ox1 = (offset_c + seed_cols - 1) * pitch + cell_size
-    oy1 = (offset_r + seed_rows - 1) * pitch + cell_size
-    draw.rectangle([ox0, oy0, ox1, oy1], outline=IDX_OUTLINE, width=1)
+    # Persistent outline around the seed region — sits in the gap.
+    ox0 = offset_c * pitch - 3
+    oy0 = offset_r * pitch - 3
+    ox1 = (offset_c + seed_cols - 1) * pitch + cell_size + 2
+    oy1 = (offset_r + seed_rows - 1) * pitch + cell_size + 2
+    draw.rounded_rectangle(
+        [ox0, oy0, ox1, oy1],
+        radius=corner_radius,
+        outline=IDX_OUTLINE,
+        width=gap,
+    )
+
+    caption_bbox = draw.textbbox((0, 0), caption_text, font=font)
+    caption_h = caption_bbox[3] - caption_bbox[1]
+    caption_y = grid_h + max(0, (caption_height - caption_h) // 2)
+    draw.text(
+        (8, caption_y),
+        caption_text,
+        fill=IDX_CAPTION_TEXT,
+        font=font,
+    )
 
     return img
 

@@ -11,6 +11,9 @@ DEFAULT_CONFIG = {
     "seed_hold_ms": 800,       # pause on the initial seed frame
     "frame_ms": 100,           # normal evolution cadence
     "terminal_hold_ms": 2000,  # pause on the final frame when terminated early
+    # Caption area for the timeframe label shown under the GIF.
+    "caption_height": 18,
+    "caption_text": "GitHub contributions over the last 12 months",
     # Output paths (relative to cwd or absolute).
     "output_light": "assets/contribution-life-light.gif",
     "output_dark": "assets/contribution-life-dark.gif",

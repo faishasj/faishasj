@@ -8,7 +8,7 @@ from PIL import Image
 
 from generator.config import DEFAULT_CONFIG
 from generator.main import generate
-from generator.palettes import DARK_COLORS, LIGHT_COLORS
+from generator.palettes import DARK_COLORS, LIGHT_COLORS, IDX_CAPTION_TEXT
 from generator.simulation import evolve, seed_world, step
 
 FIXTURE_PATH = os.path.join(os.path.dirname(__file__), "..", "fixtures", "contribution_fixture.json")
@@ -219,7 +219,21 @@ def test_gif_image_dimensions(fixture_grid, small_config):
     img = Image.open(small_config["output_light"])
     cfg = {**DEFAULT_CONFIG, **small_config}
     pitch = cfg["cell_size"] + cfg["gap"]
-    assert img.size == (cfg["world_cols"] * pitch, cfg["world_rows"] * pitch)
+    assert img.size == (
+        cfg["world_cols"] * pitch,
+        cfg["world_rows"] * pitch + cfg["caption_height"],
+    )
+
+
+def test_gif_caption_band_contains_text_pixels(fixture_grid, small_config):
+    generate(fixture_grid, small_config)
+    img = Image.open(small_config["output_light"])
+    cfg = {**DEFAULT_CONFIG, **small_config}
+    pitch = cfg["cell_size"] + cfg["gap"]
+    caption_band = img.crop(
+        (0, cfg["world_rows"] * pitch, img.size[0], img.size[1])
+    )
+    assert IDX_CAPTION_TEXT in set(caption_band.getdata())
 
 
 def test_gif_frame_count_equals_max_generations(fixture_grid, small_config):
@@ -233,13 +247,14 @@ def test_gif_last_frame_holds_on_early_termination(tmp_path):
     from generator.renderer import render_gif
 
     # Frame 0: outer world all dead.
-    # Frame 1: one live outer cell at (0,0) — visually different, so Pillow
-    #          keeps both frames rather than deduplicating.
+    # Frame 1: one live seeded cell with a nonzero contribution — visually
+    #          different, so Pillow keeps both frames rather than deduplicating.
     world0 = [[False] * 96 for _ in range(31)]
     world1 = [row[:] for row in world0]
-    world1[0][0] = True
+    world1[12][21] = True
 
     contribution_grid = [[0] * 53 for _ in range(7)]
+    contribution_grid[0][0] = 1
     seed_offset = (12, 21)
     cfg = {**DEFAULT_CONFIG}
     output = str(tmp_path / "test.gif")
@@ -282,12 +297,12 @@ def test_light_dark_differ_in_bytes(fixture_grid, small_config):
 # Palettes
 # ---------------------------------------------------------------------------
 
-def test_light_palette_has_7_entries():
-    assert len(LIGHT_COLORS) == 7
+def test_light_palette_has_8_entries():
+    assert len(LIGHT_COLORS) == 8
 
 
-def test_dark_palette_has_7_entries():
-    assert len(DARK_COLORS) == 7
+def test_dark_palette_has_8_entries():
+    assert len(DARK_COLORS) == 8
 
 
 def test_palettes_differ():
