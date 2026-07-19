@@ -33,15 +33,40 @@ jobs:
       - name: Regenerate README assets
         run: python -m generator
 
+      - name: Stamp generated assets with the date
+        run: |
+          date_stamp=$(date +%F)
+          light_asset="assets/contribution-life-light-${date_stamp}.gif"
+          dark_asset="assets/contribution-life-dark-${date_stamp}.gif"
+
+          mv assets/contribution-life-light.gif "$light_asset"
+          mv assets/contribution-life-dark.gif "$dark_asset"
+
+          export DATE_STAMP="$date_stamp"
+          python - <<'PY'
+from pathlib import Path
+import os
+
+date_stamp = os.environ["DATE_STAMP"]
+light_asset = f"assets/contribution-life-light-{date_stamp}.gif"
+dark_asset = f"assets/contribution-life-dark-{date_stamp}.gif"
+
+readme = Path("README.md")
+content = readme.read_text()
+content = content.replace("assets/contribution-life-dark.gif", dark_asset)
+content = content.replace("assets/contribution-life-light.gif", light_asset)
+readme.write_text(content)
+PY
+
       - name: Commit changed assets
         run: |
-          if git diff --quiet --exit-code -- assets/contribution-life-light.gif assets/contribution-life-dark.gif; then
+          if git diff --quiet --exit-code -- README.md assets; then
             echo "No asset changes detected; skipping commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/contribution-life-light.gif assets/contribution-life-dark.gif
+          git add README.md assets
           git commit -m "Regenerate README assets"
           git push

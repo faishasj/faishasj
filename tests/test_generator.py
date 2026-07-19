@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 
 import pytest
 from PIL import Image
@@ -327,13 +328,13 @@ README_PATH = os.path.join(os.path.dirname(__file__), "..", "README.md")
 def test_readme_references_light_asset():
     with open(README_PATH) as f:
         content = f.read()
-    assert "contribution-life-light.gif" in content
+    assert re.search(r"contribution-life-light-\d{4}-\d{2}-\d{2}\.gif", content)
 
 
 def test_readme_references_dark_asset():
     with open(README_PATH) as f:
         content = f.read()
-    assert "contribution-life-dark.gif" in content
+    assert re.search(r"contribution-life-dark-\d{4}-\d{2}-\d{2}\.gif", content)
 
 
 def test_readme_uses_picture_element():

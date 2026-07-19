@@ -21,5 +21,8 @@ def test_workflow_uses_generator_seam_and_no_op_guard():
     content = WORKFLOW_PATH.read_text()
     assert "GITHUB_CONTRIBUTION_USERNAME: ${{ github.repository_owner }}" in content
     assert "python -m generator" in content
-    assert "git diff --quiet --exit-code -- assets/contribution-life-light.gif assets/contribution-life-dark.gif" in content
+    assert "date +%F" in content
+    assert "mv assets/contribution-life-light.gif" in content
+    assert "README.md" in content
+    assert "git diff --quiet --exit-code -- README.md assets" in content
     assert "No asset changes detected; skipping commit." in content
