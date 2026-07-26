@@ -44,19 +44,19 @@ jobs:
 
           export DATE_STAMP="$date_stamp"
           python - <<'PY'
-from pathlib import Path
-import os
+          from pathlib import Path
+          import os
 
-date_stamp = os.environ["DATE_STAMP"]
-light_asset = f"assets/contribution-life-light-{date_stamp}.gif"
-dark_asset = f"assets/contribution-life-dark-{date_stamp}.gif"
+          date_stamp = os.environ["DATE_STAMP"]
+          light_asset = f"assets/contribution-life-light-{date_stamp}.gif"
+          dark_asset = f"assets/contribution-life-dark-{date_stamp}.gif"
 
-readme = Path("README.md")
-content = readme.read_text()
-content = content.replace("assets/contribution-life-dark.gif", dark_asset)
-content = content.replace("assets/contribution-life-light.gif", light_asset)
-readme.write_text(content)
-PY
+          readme = Path("README.md")
+          content = readme.read_text()
+          content = content.replace("assets/contribution-life-dark.gif", dark_asset)
+          content = content.replace("assets/contribution-life-light.gif", light_asset)
+          readme.write_text(content)
+          PY
 
       - name: Commit changed assets
         run: |
