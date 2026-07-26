@@ -46,6 +46,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import os
+          import re
 
           date_stamp = os.environ["DATE_STAMP"]
           light_asset = f"assets/contribution-life-light-{date_stamp}.gif"
@@ -53,14 +54,22 @@ jobs:
 
           readme = Path("README.md")
           content = readme.read_text()
-          content = content.replace("assets/contribution-life-dark.gif", dark_asset)
-          content = content.replace("assets/contribution-life-light.gif", light_asset)
+          content = re.sub(
+              r"assets/contribution-life-dark(?:-\d{4}-\d{2}-\d{2})?\.gif",
+              dark_asset,
+              content,
+          )
+          content = re.sub(
+              r"assets/contribution-life-light(?:-\d{4}-\d{2}-\d{2})?\.gif",
+              light_asset,
+              content,
+          )
           readme.write_text(content)
           PY
 
       - name: Commit changed assets
         run: |
-          if git diff --quiet --exit-code -- README.md assets; then
+          if [ -z "$(git status --porcelain -- README.md assets)" ]; then
             echo "No asset changes detected; skipping commit."
             exit 0
           fi
