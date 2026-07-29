@@ -1,4 +1,4 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/contribution-life-dark-2026-07-28.gif">
-  <img src="assets/contribution-life-light-2026-07-28.gif" alt="Conway's Game of Life seeded from my GitHub contributions">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/contribution-life-dark-2026-07-29.gif">
+  <img src="assets/contribution-life-light-2026-07-29.gif" alt="Conway's Game of Life seeded from my GitHub contributions">
 </picture>
